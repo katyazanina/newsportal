@@ -1,4 +1,4 @@
 <template>
-    <div>Катя ЗАнина</div>
+<div></div>
 </template>
 

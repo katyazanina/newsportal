@@ -8,7 +8,6 @@ module.exports = defineConfig({
             splitChunks: {
                 cacheGroups: {
                     default: false,
-                    // Merge all the CSS into one file
                     styles: {
                         name: "styles",
                         test: (m) => m.constructor.name === "CssModule",
