@@ -1,26 +1,10 @@
-@import 'scss-reset/_reset.scss';
-
-// Bootstrap utilities
-
-$grid-breakpoints: (
-	sm: $small,
-	md: $medium,
-	lg: $large,
-);
-
-$container-max-widths: (
-	sm: 100%,
-	md: 100%,
-	lg: 1280px,
-);
 
 $grid-gutter-width: 2rem;
-
 
 // Spacers
 
 $spacer: 1rem;
-$spacers: () !default;
+$spacers: ();
 
 $spacers: map-merge(
 	$spacers,
@@ -50,6 +34,11 @@ $spacers: map-merge(
 
 $enable-negative-margins: true;
 
+$enable-rfs: false;
+
+$enable-important-utilities: false;
+
+$negative-spacers: true;
 
 // Typography
 
@@ -93,27 +82,16 @@ $line-height-lg: 1.6;
 //Colors 
 
 $theme-colors: (
-	'black': #121221,
-	'grey': #444444,
+	'main-black': #121221,
+	'main-grey': #444444,
 	'grey-lighten-1': #6C6C6C,
 	'grey-lighten-2': #949494,
-	'white': #F8F8F8
+	'main-white': #F8F8F8
 );
 
 @function color($color) {
 	@return map-get($theme-colors, $color);
 }
-
-$enable-rfs: false;
-
-@import 'bootstrap/scss/functions';
-@import 'bootstrap/scss/variables';
-@import 'bootstrap/scss/maps';
-@import 'bootstrap/scss/utilities';
-
-$negative-spacers: if($enable-negative-margins, negativify-map($spacers), null);
-
-$enable-important-utilities: false;
 
 $utilities: (
 	'font-size': (

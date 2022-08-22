@@ -1,15 +1,16 @@
 import { defineAsyncComponent } from "vue"
 
 const appComponents = [
-    "TheHeader",
-    "TheFooter",
+	"AppHeader",
+	"AppFooter",
+	"AppNav"
 ]
 
 const useAppComponents = (app) => {
-    appComponents.forEach(component => {
-        app.component(component, defineAsyncComponent(() =>
-            import(`./${component}.vue`)
-        ));
-    })
+	appComponents.forEach(component => {
+		app.component(component, defineAsyncComponent(() =>
+			import(`./${component}.vue`)
+		));
+	})
 }
 export { useAppComponents }

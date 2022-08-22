@@ -13,11 +13,12 @@ import { useGlobalComponents } from "./components/global";
 import { useAppComponents } from "./components/app";
 
 const app = createApp(App);
+const pinia = createPinia();
 
 useGlobalComponents(app);
 useAppComponents(app);
 
-app.mount("#app");
-
+app.use(pinia);
 app.use(router);
-app.use(createPinia);
+
+app.mount("#app");
