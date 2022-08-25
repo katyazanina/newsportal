@@ -7,6 +7,14 @@ const routes = [
 		component: () => import("@/views/HomeView.vue"),
 	},
 	{
+		path: "/menu",
+		name: "menu",
+		meta: {
+			layout: "MenuLayout"
+		},
+		component: () => import("@/views/MenuView.vue"),
+	},
+	{
 		path: "/:code",
 		name: "section",
 		props: true,

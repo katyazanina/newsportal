@@ -4,12 +4,11 @@
 			<slot/>
 		</div>
 	</main>
-	<AppFooter/>
 </template>
 
 <script>
 
 export default {
-	name: "DefaultLayout",
+	name: "MenuLayout",
 };
 </script>

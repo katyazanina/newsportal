@@ -1,7 +1,7 @@
 <template>
 	<header class="app-header py-8 fixed-top">
 		<div class="container">
-			<div class="d-flex justify-content-between align-center">
+			<div class="d-flex justify-content-between align-items-center">
 				<ALink to="/" class="d-block">
 					<svg width="111" height="37" viewBox="0 0 111 37" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<rect width="56" height="37" rx="4" fill="#121221"/>
@@ -10,7 +10,7 @@
 					</svg>
 				</ALink>
 
-				<AppNav/>
+				<AppNavButton/>
 			</div>
 		</div>
 	</header>

@@ -12,7 +12,10 @@ export const useNewsStore = defineStore("news", {
 		async getMenu() {
 			try {
 				const { data } = await Repositories.news.getSectionList();
+				
 				this.menu = data.results || [];
+				
+				this.error = "";
 			} catch (e) {
 				this.error = e.message;
 			}
@@ -20,15 +23,22 @@ export const useNewsStore = defineStore("news", {
 		async getTop(code) {
 			try {
 				const { data } = await Repositories.news.getTop(code);
+
 				this.content = data.results || [];
+				
+				this.error = "";
 			} catch (e) {
 				this.error = e.message;
 			}
 		},
-		async getSection(code) {
+		async getSection({path, query}) {
 			try {
-				const { data } = await Repositories.news.getSection(code);
-				this.content = data.results || [];
+				const params = query || {};
+				const { data } = await Repositories.news.getSection({ path, params });
+				const results = data.results || [];
+				this.content = [...this.content, ...results] || [];	
+
+				this.error = "";
 			} catch (e) {
 				this.error = e.message;
 			}

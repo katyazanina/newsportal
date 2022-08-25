@@ -3,9 +3,9 @@
     v-if="isExternal" 
     target="_blank"
     rel="noopener"
-    class="external-link"
+    class="a-link"
     :href="to"><slot/></a>
-  <router-link v-else v-bind="$props" class="internal-link"><slot/></router-link>
+  <router-link v-else v-bind="$props" class="a-link"><slot/></router-link>
 </template>
 
 <script>
@@ -22,3 +22,16 @@ export default {
 	}
 }
 </script>
+
+<style lang="scss">
+.a-link {
+	text-decoration: none;
+	transition: color 0.5s ease;
+	
+	&:hover {
+		@media(hover:hover) {
+			color: color(main-grey);
+		}
+	}
+}
+</style>

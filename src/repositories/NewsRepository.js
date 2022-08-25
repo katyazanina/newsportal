@@ -7,8 +7,8 @@ export default (Axios) => ({
 	getSectionList() {
 		return Axios.get(`/news/v3/content/section-list${resource}`)
 	},
-	getSection(code) {
-		return Axios.get(`/news/v3/content/all/${code}${resource}`)
+	getSection({path, params}) {
+		return Axios.get(`/news/v3/content/all/${path}${resource}`, { params } )
 	},
 	getDetail(code) {
 		console.log(code)

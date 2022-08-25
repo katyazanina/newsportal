@@ -1,9 +1,9 @@
 <template>
 	<AppLayout>
 		<router-view v-slot="{ Component }">
-			<transition>
+			<!-- <transition> -->
 				<component :is="Component" :key="$route.path"></component>
-			</transition>
+			<!-- </transition> -->
 		</router-view>
 	</AppLayout>
 </template>

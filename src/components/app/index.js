@@ -3,7 +3,7 @@ import { defineAsyncComponent } from "vue"
 const appComponents = [
 	"AppHeader",
 	"AppFooter",
-	"AppNav"
+	"AppNavButton"
 ]
 
 const useAppComponents = (app) => {

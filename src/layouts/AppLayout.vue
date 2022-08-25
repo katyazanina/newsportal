@@ -1,4 +1,5 @@
 <template>
+	<AppHeader/>
 	<component :is="layout">
 		<slot />
 	</component>
@@ -7,13 +8,13 @@
 <script>
 import DefaultLayout from "./DefaultLayout.vue";
 
-import { markRaw, watch } from "vue";
+import { watch, shallowRef } from "vue";
 import { useRoute } from "vue-router";
 
 export default {
 	name: "AppLayout",
 	setup() {
-		const layout = markRaw(DefaultLayout);
+		const layout = shallowRef(DefaultLayout);
 		const route = useRoute();
 
 		watch(
@@ -23,7 +24,7 @@ export default {
 					const component = await import(
 						`@/layouts/${meta.layout}.vue`
 					);
-					layout.value = component?.default || DefaultLayout;
+					layout.value = component.default || DefaultLayout;
 				} catch (e) {
 					layout.value = DefaultLayout;
 				}
