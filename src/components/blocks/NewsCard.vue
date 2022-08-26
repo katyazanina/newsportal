@@ -1,6 +1,6 @@
 <template>
 	<div class="news-card">
-		<router-link :to="{ path: link }">
+		<ALink :to="{ path: link }">
 			<div v-if="image" class="news-card__img mb-16">
 				<img :src="image" :alt="title" />
 			</div>
@@ -29,7 +29,7 @@
 			<div class="fs-text-2 text-grey-lighten-2">
 				{{ new Date(published_date).toDateString() }} | #{{ section }}
 			</div>
-		</router-link>
+		</ALink>
 	</div>
 </template>
 

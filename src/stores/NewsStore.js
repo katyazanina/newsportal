@@ -45,8 +45,8 @@ export const useNewsStore = defineStore("news", {
 		},
 		async getDetail(code) {
 			try {
-				const { data } = await Repositories.news.getSection(code);
-				this.detail = data.results || [];
+				const { data } = await Repositories.news.getDetail(code);
+				this.detail = data;
 			} catch (e) {
 				this.error = e.message;
 			}

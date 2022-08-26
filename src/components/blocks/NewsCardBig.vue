@@ -1,6 +1,6 @@
 <template>
   <div class="news-card-big d-flex ">
-	<!-- <router-link :to="{ name: 'detail', params: { code: item.slug_name }}"> -->
+	<ALink :to="{ path: link }">
 		<div class="row">
 			<div class="col-12 col-md-6 col-lg-9">
 				<div class="news-card-big__img mb-16">
@@ -23,7 +23,7 @@
 				<p class="news-card-big__desc fs-subtitle-1 mb-24">{{abstract}}</p>
 			</div>
 		</div>
-	<!-- </router-link> -->
+	</ALink>
   </div>
 </template>
 
@@ -50,7 +50,11 @@ const props = defineProps({
 	},
 	section: {
 		type: String,
-	}
+	},
+	url: {
+		type: String,
+		required: true,
+	},
 });
 
 const image = computed(()=> {
@@ -63,6 +67,15 @@ const image = computed(()=> {
 
 		return arr[0].url
 	}else{
+		return "";
+	}
+});
+
+const link = computed(() => {
+	if (props.url) {
+		var url = new URL(props.url);
+		return url.pathname.replace(/.html/g, "");
+	} else {
 		return "";
 	}
 });

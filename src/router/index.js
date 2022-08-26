@@ -23,7 +23,6 @@ const routes = [
 	{
 		path: "/:code+",
 		name: "detail",
-		props: true,
 		component: () => import("@/views/DetailView.vue"),
 	},
 ]

@@ -10,7 +10,7 @@ export default (Axios) => ({
 	getSection({path, params}) {
 		return Axios.get(`/news/v3/content/all/${path}${resource}`, { params } )
 	},
-	getDetail(code) {
-		console.log(code)
+	getDetail(path) {
+		return Axios.get(`https://www.nytimes.com${path}.html` )
 	}
 })
