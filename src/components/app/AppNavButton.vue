@@ -26,14 +26,17 @@ function goBack () {
 .app-nav__button {
 	width: 2rem;
 	height: 2rem;
+
 	position: relative;
 
 	& span {
 		position: absolute;
+		
+		left: 0;
 
 		width: 100%;
 		height: 0.2rem;
-		left: 0;
+
 		background-color: color(main-black);
 		transition: all 0.5s ease;
 
@@ -58,7 +61,6 @@ function goBack () {
 			&:first-child {
 				top: 50%;
 				transform: translateY(-50%) rotate(45deg);
-
 			}
 
 			&:nth-child(2) {

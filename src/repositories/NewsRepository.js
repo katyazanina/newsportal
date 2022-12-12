@@ -10,6 +10,7 @@ export default (Axios) => ({
 	getSection({path, params}) {
 		return Axios.get(`/news/v3/content/all/${path}${resource}`, { params } )
 	},
+	// TODO: AddDetail repo
 	getDetail(path) {
 		return Axios.get(`https://www.nytimes.com${path}.html` )
 	}

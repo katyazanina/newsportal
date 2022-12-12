@@ -6,9 +6,10 @@ export const useNewsStore = defineStore("news", {
 		menu: [],
 		content: [],
 		error: "",
-		detail: {}
+		detail: ""
 	}),
 	actions: {
+		// TODO: Add AppStore
 		async getMenu() {
 			try {
 				const { data } = await Repositories.news.getSectionList();
@@ -20,6 +21,7 @@ export const useNewsStore = defineStore("news", {
 				this.error = e.message;
 			}
 		},
+
 		async getTop(code) {
 			try {
 				const { data } = await Repositories.news.getTop(code);
@@ -36,6 +38,18 @@ export const useNewsStore = defineStore("news", {
 				const params = query || {};
 				const { data } = await Repositories.news.getSection({ path, params });
 				const results = data.results || [];
+				this.content = results || [];	
+
+				this.error = "";
+			} catch (e) {
+				this.error = e.message;
+			}
+		},
+		async getPagination({path, query}) {
+			try {
+				const params = query || {};
+				const { data } = await Repositories.news.getSection({ path, params });
+				const results = data.results || [];
 				this.content = [...this.content, ...results] || [];	
 
 				this.error = "";
@@ -43,6 +57,8 @@ export const useNewsStore = defineStore("news", {
 				this.error = e.message;
 			}
 		},
+
+		// TODO: AddDetailStore
 		async getDetail(code) {
 			try {
 				const { data } = await Repositories.news.getDetail(code);

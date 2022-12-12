@@ -1,5 +1,7 @@
 <template>
 	<section class="section" v-if="menu">
+
+		<!-- TODO: Add component navigation -->
 		<nav class="a-menu">
 			<ul class="row gx-64 gy-16">	
 				<li v-for="item in menu" :key="item.section" class="col-auto fs-title-3 a-menu__item">
@@ -14,6 +16,10 @@
 			</ul>
 		</nav>
 	</section>
+
+
+	<!-- TODO: Layout for error and loading -->
+
 	<div v-else-if="error">
 		<section class="section">
 			<span class="fs-title-3 text-center p-fixed">{{ error }}</span>
@@ -30,6 +36,7 @@
 import { storeToRefs } from "pinia";
 import { useNewsStore } from "@/stores/NewsStore";
 
+// TODO: initizialization
 const store = useNewsStore();
 const { menu, error } = storeToRefs(store);
 </script>

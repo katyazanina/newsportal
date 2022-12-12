@@ -2,7 +2,7 @@
 	<AppLayout>
 		<router-view v-slot="{ Component }">
 			<!-- <transition> -->
-				<component :is="Component" :key="$route.path"></component>
+				<component :is="Component" :key="route.path"></component>
 			<!-- </transition> -->
 		</router-view>
 	</AppLayout>
@@ -10,10 +10,12 @@
 
 <script setup>
 import AppLayout from "@/layouts/AppLayout";
-
 import { useNewsStore } from "@/stores/NewsStore";
+import { useRoute } from "vue-router";
 
 const store = useNewsStore();
+
+const route = useRoute();
 
 async function init() {
 	await store.getMenu();

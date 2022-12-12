@@ -16,6 +16,7 @@
 			</div>
 		</section>
 	</div>
+	<!-- TODO: Layout for error and loading -->
 	<div v-else-if="error"> 
 		<section class="section">
 			<span class="fs-title-3 text-center p-fixed">{{ error }}</span>
@@ -32,8 +33,10 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { useNewsStore } from "@/stores/NewsStore";
-import NewsCard from "@/components/blocks/NewsCard.vue";
-import NewsCardBig from "@/components/blocks/NewsCardBig.vue";
+import NewsCard from "@/components/blocks/news-card/NewsCard.vue";
+import NewsCardBig from "@/components/blocks/news-card/NewsCardBig.vue";
+
+// TODO : Add comon initicialization for page
 
 const store = useNewsStore();
 const { content, error } = storeToRefs(store);

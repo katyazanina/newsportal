@@ -10,18 +10,16 @@
 					class="col-12"
 					:class="[i !== 0 ? 'col-sm-6 col-lg-3' : 'd-none']"
 				>
-					<NewsCard v-bind="item"></NewsCard>
+					<NewsCard v-bind="item" :key="`${item.published_date}-${i}`"></NewsCard>
 				</div>
 			</div>
 
-			<span
-				class="fs-title-3 text-center"
-				ref="more"
-				v-if="pagination !== maxQuantityOfItem"
-				>{{error || 'Loading...' }}</span
-			>
+			<!-- TODO: getDynamicData -->
+			<APagination :offset="20" :max="500"/>
 		</section>
 	</div>
+
+	<!-- TODO: Add error and loading -->
 	<div v-else-if="error">
 		<section class="section">
 			<span class="fs-title-3 text-center">{{ error }}</span>
@@ -35,18 +33,19 @@
 </template>
 
 <script setup>
+import { defineProps, ref } from "vue";
+import { useRoute } from "vue-router";
+
 import { storeToRefs } from "pinia";
 import { useNewsStore } from "@/stores/NewsStore";
-import { defineProps, ref } from "vue";
-import { useRoute,useRouter } from "vue-router";
 
-import NewsCard from "@/components/blocks/NewsCard.vue";
+import NewsCard from "@/components/blocks/news-card/NewsCard.vue";
+import APagination from "@/components/blocks/APagination.vue";
 
 const store = useNewsStore();
 const { content, error } = storeToRefs(store);
 
 const route = useRoute();
-const router = useRouter();
 
 const props = defineProps({
 	code: {
@@ -55,41 +54,20 @@ const props = defineProps({
 	},
 });
 
-const quantityOfItem = 20;
-const maxQuantityOfItem = 500;
-const more = ref(null);
 
-const pagination = ref(Number(route.query.offset) + quantityOfItem || quantityOfItem);
-
-init().finally(()=>{
-	if(more.value) {
-		intersectionObserver.observe(more.value);
-	}
-});
-
+const offset = ref(route.query.offset);
+// TODO: getDynamicData 20
 async function init() {
-	await store.getSection({ path: props.code, query: { limit: Number(route.query.offset ) + quantityOfItem || quantityOfItem } });
+	await store.getSection({ path: props.code, query: { limit: Number(offset ) + 20 || 20 } });
 }
 
-const intersectionObserver = new IntersectionObserver((entries) => {
-	if (entries[0].intersectionRatio <= 0) return;
-	loadMore();
-});
+init();
 
-async function loadMore() {
-	const delay = (timeout) => new Promise((resolve) => setTimeout(resolve, timeout));
 
-	delay(1800)
-		.then(() =>
-			store.getSection({
-				path: props.code,
-				query: { offset: pagination.value }
-			})
-		).then(() => {
-		}).finally(()=>{
-			router.push({ query: { offset: pagination.value } });
-			const result = pagination.value + quantityOfItem;
-			pagination.value = result.value > maxQuantityOfItem ? maxQuantityOfItem : result;
-		});
-}
+// TODO : add Pagination
+// store.getPagination({
+	// 	path: props.code,
+	// 	query: { offset: pagination.value }
+// });
+
 </script>
